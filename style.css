@@ -1,10 +1,10 @@
 footer{
-    position: relative;
+    /* position: relative; */
 }
 
 .inside-footer{
-    position: absolute;
+    /* position: absolute; */
     width: 100%;
-    top: 90vh;
+    /* top: 90vh; */
     background-color: teal;
 }
