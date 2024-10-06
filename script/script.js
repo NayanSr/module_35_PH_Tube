@@ -22,7 +22,7 @@ const showCategories = (categories) => {
   categories.forEach((ct) => {
     const buttonContainer = document.createElement("div");
     buttonContainer.innerHTML = `
-    <button onclick=loadCategoryWise(${ct.category_id}) class='"btn bg-teal-200 border-none mx-4 p-2 text-base rounded-lg "'>${ct.category}</button
+    <button id='btn-${ct.category_id}' onclick=loadCategoryWise(${ct.category_id}) class=" category-btn btn  border-none mx-4 p-2 rounded-lg ">${ct.category}</button
     `;
     categoryContainer.appendChild(buttonContainer);
   });
@@ -32,7 +32,17 @@ const showCategories = (categories) => {
 const loadCategoryWise = (id) => {
   fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`)
     .then((res) => res.json())
-    .then((data) => displayVideos(data.category));
+    .then((data) => {
+      // ! remove active class
+      const buttons= document.getElementsByClassName('category-btn');
+      for(let button of buttons){
+        button.classList.remove('active');
+      }
+      //! Add active class
+      const activeBtn= document.getElementById(`btn-${id}`);
+      activeBtn.classList.add('active');
+      displayVideos(data.category);
+    });
 };
 
 //! Loading videos and display them in ui

@@ -1,10 +1,11 @@
-footer{
-    /* position: relative; */
+.active{
+    background-color: red;
+    color: white;
 }
 
 .inside-footer{
-    /* position: absolute; */
     width: 100%;
-    /* top: 90vh; */
     background-color: teal;
 }
+
+
