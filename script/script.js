@@ -45,6 +45,28 @@ const loadCategoryWise = (id) => {
     });
 };
 
+//! load single item details
+const loadSingleItemDetails=async(id)=>{
+  const url=`https://openapi.programming-hero.com/api/phero-tube/video/${id}`
+  const res= await fetch(url);
+  const data= await res.json();
+  displaySingleItemDetails(data.video)
+}
+
+const displaySingleItemDetails=video=>{
+  console.log(video);
+  const modalContainer= document.getElementById('modal-container');
+  modalContainer.innerHTML=`
+  <img src='${video.thumbnail}'/>
+  <p>${video.title}</p>
+  `
+
+  //way-1
+  // document.getElementById('button-modal').click();
+  //way-2
+  document.getElementById('myModal').showModal()
+}
+
 //! Loading videos and display them in ui
 const loadVideos = () => {
   const url = "https://openapi.programming-hero.com/api/phero-tube/videos";
@@ -102,6 +124,7 @@ const displayVideos = (videos) => {
                     }
                 </div>
                 <p>${video.others.views}</p>
+                <button onclick=loadSingleItemDetails('${video.video_id}') class='btn btn-warning btn-sm '>details</button>
            </div>
             </div>
         </div>
