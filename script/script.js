@@ -45,6 +45,17 @@ const loadVideos = () => {
 const displayVideos = (videos) => {
   const videoContainer = document.getElementById("video-container");
   videoContainer.innerHTML = "";
+  if (videos.length == 0) {
+    videoContainer.classList.remove('grid')
+    videoContainer.innerHTML = `
+    <div class="min-h-[300px] w-full flex flex-col gap-4 justify-center items-center">
+      <img src='assets/Icon.png'/>
+      <h2 class='text-xl font-semibold'>No content about this category</h2>
+    </div>
+    `;
+    return;
+  }
+  videoContainer.classList.add('grid')
   videos.forEach((video) => {
     const videoCard = document.createElement("div");
     videoCard.classList = "card card-compact bg-orange-50 shadow-xl";
